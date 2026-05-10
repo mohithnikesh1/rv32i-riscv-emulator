@@ -19,6 +19,7 @@ add_library(emulator_lib
     src/memory.cpp
     src/decoder.cpp
     src/executor.cpp
+    src/trace.cpp
 )
 target_include_directories(emulator_lib PUBLIC include)
 

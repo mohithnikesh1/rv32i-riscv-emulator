@@ -8,7 +8,11 @@
       "Bash(git rm *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(cmake --build build)",
+      "Bash(ctest --test-dir build --output-on-failure)",
+      "Bash(.\\\\build\\\\riscv_emulator.exe)",
+      "PowerShell(& \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\riscv_emulator.exe\")"
     ]
   }
 }

@@ -13,3 +13,7 @@ add_test(NAME test_decoder COMMAND test_decoder)
 add_executable(test_executor test_executor.cpp)
 target_link_libraries(test_executor PRIVATE emulator_lib GTest::gtest_main)
 add_test(NAME test_executor COMMAND test_executor)
+
+add_executable(test_trace test_trace.cpp)
+target_link_libraries(test_trace PRIVATE emulator_lib GTest::gtest_main)
+add_test(NAME test_trace COMMAND test_trace)
