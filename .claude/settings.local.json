@@ -12,7 +12,10 @@
       "Bash(cmake --build build)",
       "Bash(ctest --test-dir build --output-on-failure)",
       "Bash(.\\\\build\\\\riscv_emulator.exe)",
-      "PowerShell(& \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\riscv_emulator.exe\")"
+      "PowerShell(& \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\riscv_emulator.exe\")",
+      "Bash(cmake -B build -S . -DCMAKE_BUILD_TYPE=Release)",
+      "PowerShell($env:PATH -split \";\")",
+      "PowerShell($base = \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\tests\"; foreach \\($t in @\\(\"test_cpu\",\"test_memory\",\"test_decoder\",\"test_executor\",\"test_trace\"\\)\\) { Write-Host \"=== $t ===\"; & \"$base\\\\$t.exe\" 2>&1; Write-Host \"\" })"
     ]
   }
 }
