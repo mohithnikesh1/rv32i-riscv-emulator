@@ -16,6 +16,7 @@ int32_t signExtend(uint32_t value, int bitWidth);
 // I-type (ADDI, loads): opcode, rd, funct3, rs1, imm
 // R-type (ADD, SUB...): opcode, rd, funct3, rs1, rs2, funct7
 // S-type (stores):      opcode, funct3, rs1, rs2, imm  (rd holds imm[4:0] internally)
+// B-type (branches):    opcode, funct3, rs1, rs2, imm  (PC-relative byte offset)
 struct DecodedInstruction {
     uint32_t    opcode;     // bits [6:0]
     uint32_t    rd;         // bits [11:7]  (not meaningful for stores)
@@ -25,7 +26,8 @@ struct DecodedInstruction {
     uint32_t    funct7;     // bits [31:25]  (R-type only)
     int32_t     imm;        // sign-extended immediate (I-type and S-type)
     std::string mnemonic;   // "ADDI", "ADD", "SUB", "AND", "OR", "XOR",
-                            // "LB", "LH", "LW", "SB", "SH", "SW", or "UNKNOWN"
+                            // "LB", "LH", "LW", "SB", "SH", "SW",
+                            // "BEQ", "BNE", "BLT", "BGE", or "UNKNOWN"
 };
 
 // Decodes a 32-bit raw instruction word into a DecodedInstruction.

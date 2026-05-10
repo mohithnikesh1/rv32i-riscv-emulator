@@ -6,6 +6,24 @@ void execute(const DecodedInstruction& instr, CPUState& cpu, Memory& mem) {
     uint32_t rs1 = cpu.get_reg(instr.rs1);
     uint32_t rs2 = cpu.get_reg(instr.rs2);
 
+    // --- Branches: no register written, no memory access ---
+    // If condition is true, PC jumps to PC + imm; otherwise PC advances by 4.
+    if (instr.mnemonic == "BEQ" || instr.mnemonic == "BNE" ||
+        instr.mnemonic == "BLT" || instr.mnemonic == "BGE") {
+
+        int32_t  s1 = static_cast<int32_t>(rs1);
+        int32_t  s2 = static_cast<int32_t>(rs2);
+        bool taken = false;
+
+        if      (instr.mnemonic == "BEQ") taken = (rs1 == rs2);
+        else if (instr.mnemonic == "BNE") taken = (rs1 != rs2);
+        else if (instr.mnemonic == "BLT") taken = (s1  <  s2);
+        else if (instr.mnemonic == "BGE") taken = (s1  >= s2);
+
+        cpu.pc += taken ? static_cast<uint32_t>(instr.imm) : 4u;
+        return;
+    }
+
     // --- Stores: write to memory, no register destination ---
     // (For S-type, instr.rd holds imm[4:0] and must not be used as a register index.)
     if (instr.mnemonic == "SB" || instr.mnemonic == "SH" || instr.mnemonic == "SW") {

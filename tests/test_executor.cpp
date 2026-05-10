@@ -243,3 +243,121 @@ TEST(ExecutorTest, OutOfBoundsLoadThrows) {
     cpu.set_reg(1, 1021);
     EXPECT_THROW(run(cpu, mem, 0x0000A103), std::out_of_range);
 }
+
+// ---------------------------------------------------------------------------
+// Branch tests
+//
+// B-type encoding layout:
+//   imm[12] | imm[10:5] | rs2 | rs1 | funct3 | imm[4:1] | imm[11] | opcode(0x63)
+//
+// All tests use rs1=x1, rs2=x2, offset=+8 (so taken -> PC=8, not taken -> PC=4).
+//
+//   BEQ x1,x2,8: 0|000000|00010|00001|000|0100|0|1100011  ->  0x00208463
+//   BNE x1,x2,8: 0|000000|00010|00001|001|0100|0|1100011  ->  0x00209463
+//   BLT x1,x2,8: 0|000000|00010|00001|100|0100|0|1100011  ->  0x0020C463
+//   BGE x1,x2,8: 0|000000|00010|00001|101|0100|0|1100011  ->  0x0020D463
+// ---------------------------------------------------------------------------
+
+// BEQ: branch when rs1 == rs2
+TEST(ExecutorTest, BeqTaken) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, 5);
+    cpu.set_reg(2, 5);
+    run(cpu, mem, 0x00208463);  // BEQ x1, x2, 8
+    EXPECT_EQ(cpu.pc, 8u);
+}
+
+TEST(ExecutorTest, BeqNotTaken) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, 5);
+    cpu.set_reg(2, 3);
+    run(cpu, mem, 0x00208463);  // BEQ x1, x2, 8
+    EXPECT_EQ(cpu.pc, 4u);
+}
+
+// BNE: branch when rs1 != rs2
+TEST(ExecutorTest, BneTaken) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, 5);
+    cpu.set_reg(2, 3);
+    run(cpu, mem, 0x00209463);  // BNE x1, x2, 8
+    EXPECT_EQ(cpu.pc, 8u);
+}
+
+TEST(ExecutorTest, BneNotTaken) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, 5);
+    cpu.set_reg(2, 5);
+    run(cpu, mem, 0x00209463);  // BNE x1, x2, 8
+    EXPECT_EQ(cpu.pc, 4u);
+}
+
+// BLT: branch when rs1 < rs2 (signed).
+// Use x1=-1 (0xFFFFFFFF), x2=5: signed -1 < 5 -> taken.
+TEST(ExecutorTest, BltTakenSigned) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, static_cast<uint32_t>(-1));  // -1 in two's complement
+    cpu.set_reg(2, 5);
+    run(cpu, mem, 0x0020C463);  // BLT x1, x2, 8
+    EXPECT_EQ(cpu.pc, 8u);
+}
+
+// x1=5, x2=-1: signed 5 >= -1 -> not taken.
+TEST(ExecutorTest, BltNotTakenSigned) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, 5);
+    cpu.set_reg(2, static_cast<uint32_t>(-1));
+    run(cpu, mem, 0x0020C463);  // BLT x1, x2, 8
+    EXPECT_EQ(cpu.pc, 4u);
+}
+
+// BGE: branch when rs1 >= rs2 (signed).
+// x1=5, x2=-1: signed 5 >= -1 -> taken.
+TEST(ExecutorTest, BgeTakenSigned) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, 5);
+    cpu.set_reg(2, static_cast<uint32_t>(-1));
+    run(cpu, mem, 0x0020D463);  // BGE x1, x2, 8
+    EXPECT_EQ(cpu.pc, 8u);
+}
+
+// x1=-1, x2=5: signed -1 < 5 -> not taken.
+TEST(ExecutorTest, BgeNotTakenSigned) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(1, static_cast<uint32_t>(-1));
+    cpu.set_reg(2, 5);
+    run(cpu, mem, 0x0020D463);  // BGE x1, x2, 8
+    EXPECT_EQ(cpu.pc, 4u);
+}
+
+// PC arithmetic: taken branch from a non-zero PC should land at PC + imm.
+// Start at PC=100, take BEQ with offset 8 -> PC should be 108.
+TEST(ExecutorTest, BranchTakenUpdatesPC) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.pc = 100;
+    cpu.set_reg(1, 7);
+    cpu.set_reg(2, 7);
+    run(cpu, mem, 0x00208463);  // BEQ x1, x2, 8
+    EXPECT_EQ(cpu.pc, 108u);
+}
+
+// Not-taken branch from a non-zero PC should land at PC + 4.
+// Start at PC=100, BEQ not taken -> PC should be 104.
+TEST(ExecutorTest, BranchNotTakenUpdatesPC) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.pc = 100;
+    cpu.set_reg(1, 7);
+    cpu.set_reg(2, 9);
+    run(cpu, mem, 0x00208463);  // BEQ x1, x2, 8
+    EXPECT_EQ(cpu.pc, 104u);
+}

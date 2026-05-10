@@ -21,6 +21,7 @@ static constexpr uint32_t OPCODE_OP_IMM = 0x13;  // I-type arithmetic (ADDI, ...
 static constexpr uint32_t OPCODE_OP     = 0x33;  // R-type arithmetic (ADD, SUB, AND, OR, XOR)
 static constexpr uint32_t OPCODE_LOAD   = 0x03;  // I-type loads (LB, LH, LW)
 static constexpr uint32_t OPCODE_STORE  = 0x23;  // S-type stores (SB, SH, SW)
+static constexpr uint32_t OPCODE_BRANCH = 0x63;  // B-type branches (BEQ, BNE, BLT, BGE)
 
 DecodedInstruction decode(uint32_t instruction) {
     DecodedInstruction d;
@@ -65,6 +66,23 @@ DecodedInstruction decode(uint32_t instruction) {
         if      (d.funct3 == 0x0) d.mnemonic = "SB";
         else if (d.funct3 == 0x1) d.mnemonic = "SH";
         else if (d.funct3 == 0x2) d.mnemonic = "SW";
+        else                      d.mnemonic = "UNKNOWN";
+
+    // --- B-type branches ---
+    } else if (d.opcode == OPCODE_BRANCH) {
+        // The B-type immediate is scrambled across four non-contiguous fields.
+        // Reconstruct it: imm[12|10:5|4:1|11], then sign-extend from bit 12.
+        uint32_t imm12   = getBits(instruction, 31, 1);  // bit 31 -> imm[12]
+        uint32_t imm11   = getBits(instruction,  7, 1);  // bit  7 -> imm[11]
+        uint32_t imm10_5 = getBits(instruction, 25, 6);  // bits 30:25 -> imm[10:5]
+        uint32_t imm4_1  = getBits(instruction,  8, 4);  // bits 11:8  -> imm[4:1]
+        uint32_t raw = (imm12 << 12) | (imm11 << 11) | (imm10_5 << 5) | (imm4_1 << 1);
+        d.imm = signExtend(raw, 13);
+
+        if      (d.funct3 == 0x0) d.mnemonic = "BEQ";
+        else if (d.funct3 == 0x1) d.mnemonic = "BNE";
+        else if (d.funct3 == 0x4) d.mnemonic = "BLT";
+        else if (d.funct3 == 0x5) d.mnemonic = "BGE";
         else                      d.mnemonic = "UNKNOWN";
 
     } else {
