@@ -17,6 +17,7 @@ FetchContent_MakeAvailable(googletest)
 add_library(emulator_lib
     src/cpu.cpp
     src/memory.cpp
+    src/decoder.cpp
 )
 target_include_directories(emulator_lib PUBLIC include)
 

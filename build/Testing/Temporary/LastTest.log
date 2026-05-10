@@ -1,10 +1,10 @@
-Start testing: May 09 20:13 Eastern Daylight Time
+Start testing: May 09 20:15 Eastern Daylight Time
 ----------------------------------------------------------
-1/2 Testing: test_cpu
-1/2 Test: test_cpu
+1/3 Testing: test_cpu
+1/3 Test: test_cpu
 Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_cpu.exe"
 Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
-"test_cpu" start time: May 09 20:13 Eastern Daylight Time
+"test_cpu" start time: May 09 20:15 Eastern Daylight Time
 Output:
 ----------------------------------------------------------
 Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -32,15 +32,15 @@ Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"test_cpu" end time: May 09 20:13 Eastern Daylight Time
+"test_cpu" end time: May 09 20:15 Eastern Daylight Time
 "test_cpu" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/2 Testing: test_memory
-2/2 Test: test_memory
+2/3 Testing: test_memory
+2/3 Test: test_memory
 Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_memory.exe"
 Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
-"test_memory" start time: May 09 20:13 Eastern Daylight Time
+"test_memory" start time: May 09 20:15 Eastern Daylight Time
 Output:
 ----------------------------------------------------------
 Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -74,8 +74,46 @@ Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"test_memory" end time: May 09 20:13 Eastern Daylight Time
+"test_memory" end time: May 09 20:15 Eastern Daylight Time
 "test_memory" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: May 09 20:13 Eastern Daylight Time
+3/3 Testing: test_decoder
+3/3 Test: test_decoder
+Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_decoder.exe"
+Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
+"test_decoder" start time: May 09 20:15 Eastern Daylight Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
+[==========] Running 7 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 7 tests from DecoderTest
+[ RUN      ] DecoderTest.ExtractOpcode
+[       OK ] DecoderTest.ExtractOpcode (0 ms)
+[ RUN      ] DecoderTest.ExtractRd
+[       OK ] DecoderTest.ExtractRd (0 ms)
+[ RUN      ] DecoderTest.ExtractFunct3
+[       OK ] DecoderTest.ExtractFunct3 (0 ms)
+[ RUN      ] DecoderTest.ExtractRs1
+[       OK ] DecoderTest.ExtractRs1 (0 ms)
+[ RUN      ] DecoderTest.ExtractFunct7
+[       OK ] DecoderTest.ExtractFunct7 (0 ms)
+[ RUN      ] DecoderTest.SignExtendPositive12Bit
+[       OK ] DecoderTest.SignExtendPositive12Bit (0 ms)
+[ RUN      ] DecoderTest.SignExtendNegative12Bit
+[       OK ] DecoderTest.SignExtendNegative12Bit (0 ms)
+[----------] 7 tests from DecoderTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 7 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 7 tests.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_decoder" end time: May 09 20:15 Eastern Daylight Time
+"test_decoder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 09 20:15 Eastern Daylight Time
