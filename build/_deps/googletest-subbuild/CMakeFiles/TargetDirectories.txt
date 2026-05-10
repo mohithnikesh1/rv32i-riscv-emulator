@@ -1,3 +1,0 @@
-C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
-C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-subbuild/CMakeFiles/edit_cache.dir
-C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-subbuild/CMakeFiles/rebuild_cache.dir
