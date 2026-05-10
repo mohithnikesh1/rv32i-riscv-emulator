@@ -8,6 +8,28 @@ The goal is to build a clean, tested, CV-worthy systems programming project.
 
 Start with RV32I only. Do not add RV64, floating point, compressed instructions, privileged mode, virtual memory, Linux booting, or multicore support unless explicitly requested later.
 
+## Current Status
+
+Already implemented and tested:
+
+- CPU state — 32 registers (x0 hardwired to zero) + PC (`cpu.hpp/cpp`)
+- Memory — flat byte-addressable, little-endian, bounds-checked (`memory.hpp/cpp`)
+- Decoder — converts raw 32-bit words into `DecodedInstruction` (`decoder.hpp/cpp`)
+- Executor — applies all RV32I base integer instructions (`executor.hpp/cpp`)
+- Trace mode — `trace_instruction()` and `dump_registers()` (`trace.hpp/cpp`)
+- Debugger — interactive REPL with `step`, `regs`, `mem`, `run`, `quit` (`debugger.hpp/cpp`)
+- 88 unit tests across all modules (`tests/`)
+- `--debug` CLI flag launches the interactive debugger
+
+Supported instructions: ADD, SUB, AND, OR, XOR, ADDI, LB, LH, LW, SB, SH, SW, BEQ, BNE, BLT, BGE, JAL, JALR.
+
+## Planned Next Steps
+
+- Disassembler (standalone binary output)
+- ELF loader (load and run real RISC-V binaries)
+- GitHub Actions CI
+- Breakpoints and watchpoints in the debugger
+
 ## Core Features
 
 The emulator should eventually support:
