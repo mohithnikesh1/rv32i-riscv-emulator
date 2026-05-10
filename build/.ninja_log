@@ -48,3 +48,10 @@
 147	298	8000753216593697	tests/test_memory.exe	7ac2c3bda0da3115
 35	1411	8000753215382476	tests/CMakeFiles/test_decoder.dir/test_decoder.cpp.obj	c39b50996208ea3f
 1411	2052	8000753229238486	tests/test_decoder.exe	750b9db4ac755a0
+15	430	8000754301208850	CMakeFiles/emulator_lib.dir/src/decoder.cpp.obj	bfda956aad2c7370
+431	477	8000754305333882	emulator_lib.lib	271a80d0328b2417
+477	619	8000754305826683	riscv_emulator.exe	dd9832119ec3e8b2
+483	635	8000754305836642	tests/test_cpu.exe	82167839d0c1e2eb
+488	646	8000754305940876	tests/test_memory.exe	7ac2c3bda0da3115
+21	1433	8000754301242601	tests/CMakeFiles/test_decoder.dir/test_decoder.cpp.obj	c39b50996208ea3f
+1433	1808	8000754315334208	tests/test_decoder.exe	750b9db4ac755a0
