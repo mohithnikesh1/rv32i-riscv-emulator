@@ -4,7 +4,11 @@
       "Bash(ninja *)",
       "Bash(Remove-Item *)",
       "PowerShell(cmake *)",
-      "PowerShell(ctest *)"
+      "PowerShell(ctest *)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
