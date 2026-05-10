@@ -1,5 +1,5 @@
-test_cpu 11 0.00111755
-test_memory 11 0.00111176
-test_decoder 7 0.00171751
-test_executor 3 0.00379717
+test_cpu 13 0.000852738
+test_memory 13 0.000904815
+test_decoder 9 0.00106329
+test_executor 5 0.00193622
 ---

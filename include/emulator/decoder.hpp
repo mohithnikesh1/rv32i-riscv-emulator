@@ -13,13 +13,17 @@ int32_t signExtend(uint32_t value, int bitWidth);
 
 // Holds the decoded fields of one RV32I instruction.
 // Only fields relevant to the recognized instruction type are meaningful.
+// I-type: opcode, rd, funct3, rs1, imm
+// R-type: opcode, rd, funct3, rs1, rs2, funct7
 struct DecodedInstruction {
     uint32_t    opcode;     // bits [6:0]
     uint32_t    rd;         // bits [11:7]
     uint32_t    funct3;     // bits [14:12]
     uint32_t    rs1;        // bits [19:15]
-    int32_t     imm;        // sign-extended immediate (layout depends on instruction type)
-    std::string mnemonic;   // "ADDI" or "UNKNOWN"
+    uint32_t    rs2;        // bits [24:20]  (R-type only)
+    uint32_t    funct7;     // bits [31:25]  (R-type only)
+    int32_t     imm;        // sign-extended immediate (I-type only)
+    std::string mnemonic;   // "ADDI", "ADD", "SUB", "AND", "OR", "XOR", or "UNKNOWN"
 };
 
 // Decodes a 32-bit raw instruction word into a DecodedInstruction.

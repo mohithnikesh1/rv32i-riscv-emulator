@@ -51,3 +51,84 @@ TEST(ExecutorTest, AddiAdvancesPCByFour) {
     run(cpu, 0x00500093);
     EXPECT_EQ(cpu.pc, 4u);
 }
+
+// --- R-type tests (x1=10, x2=3 for all unless noted) ---
+//
+// R-type encoding layout:
+//   funct7 | rs2 | rs1 | funct3 | rd | opcode(0x33)
+//
+// ADD x3, x1, x2  ->  x3 = 10 + 3 = 13
+//   0000000 | 00010 | 00001 | 000 | 00011 | 0110011
+//   Encoding: 0x002081B3
+TEST(ExecutorTest, Add) {
+    CPUState cpu;
+    cpu.set_reg(1, 10);
+    cpu.set_reg(2, 3);
+    run(cpu, 0x002081B3);
+    EXPECT_EQ(cpu.get_reg(3), 13u);
+}
+
+// SUB x3, x1, x2  ->  x3 = 10 - 3 = 7
+//   0100000 | 00010 | 00001 | 000 | 00011 | 0110011
+//   Encoding: 0x402081B3
+TEST(ExecutorTest, Sub) {
+    CPUState cpu;
+    cpu.set_reg(1, 10);
+    cpu.set_reg(2, 3);
+    run(cpu, 0x402081B3);
+    EXPECT_EQ(cpu.get_reg(3), 7u);
+}
+
+// AND x3, x1, x2  ->  x3 = 10 & 3 = 0b1010 & 0b0011 = 0b0010 = 2
+//   0000000 | 00010 | 00001 | 111 | 00011 | 0110011
+//   Encoding: 0x0020F1B3
+TEST(ExecutorTest, And) {
+    CPUState cpu;
+    cpu.set_reg(1, 10);
+    cpu.set_reg(2, 3);
+    run(cpu, 0x0020F1B3);
+    EXPECT_EQ(cpu.get_reg(3), 2u);
+}
+
+// OR x3, x1, x2  ->  x3 = 10 | 3 = 0b1010 | 0b0011 = 0b1011 = 11
+//   0000000 | 00010 | 00001 | 110 | 00011 | 0110011
+//   Encoding: 0x0020E1B3
+TEST(ExecutorTest, Or) {
+    CPUState cpu;
+    cpu.set_reg(1, 10);
+    cpu.set_reg(2, 3);
+    run(cpu, 0x0020E1B3);
+    EXPECT_EQ(cpu.get_reg(3), 11u);
+}
+
+// XOR x3, x1, x2  ->  x3 = 10 ^ 3 = 0b1010 ^ 0b0011 = 0b1001 = 9
+//   0000000 | 00010 | 00001 | 100 | 00011 | 0110011
+//   Encoding: 0x0020C1B3
+TEST(ExecutorTest, Xor) {
+    CPUState cpu;
+    cpu.set_reg(1, 10);
+    cpu.set_reg(2, 3);
+    run(cpu, 0x0020C1B3);
+    EXPECT_EQ(cpu.get_reg(3), 9u);
+}
+
+// ADD x0, x1, x2  ->  x0 must stay 0 (x0 is hardwired zero)
+//   0000000 | 00010 | 00001 | 000 | 00000 | 0110011
+//   Encoding: 0x00208033
+TEST(ExecutorTest, AddWriteToX0DoesNothing) {
+    CPUState cpu;
+    cpu.set_reg(1, 10);
+    cpu.set_reg(2, 3);
+    run(cpu, 0x00208033);
+    EXPECT_EQ(cpu.get_reg(0), 0u);
+}
+
+// R-type instruction must also advance PC by 4.
+TEST(ExecutorTest, RTypeAdvancesPCByFour) {
+    CPUState cpu;
+    cpu.set_reg(1, 10);
+    cpu.set_reg(2, 3);
+    EXPECT_EQ(cpu.pc, 0u);
+    run(cpu, 0x002081B3);  // ADD x3, x1, x2
+    EXPECT_EQ(cpu.pc, 4u);
+}
