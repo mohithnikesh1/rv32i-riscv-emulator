@@ -17,3 +17,7 @@ add_test(NAME test_executor COMMAND test_executor)
 add_executable(test_trace test_trace.cpp)
 target_link_libraries(test_trace PRIVATE emulator_lib GTest::gtest_main)
 add_test(NAME test_trace COMMAND test_trace)
+
+add_executable(test_debugger test_debugger.cpp)
+target_link_libraries(test_debugger PRIVATE emulator_lib GTest::gtest_main)
+add_test(NAME test_debugger COMMAND test_debugger)

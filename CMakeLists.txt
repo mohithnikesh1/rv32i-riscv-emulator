@@ -20,6 +20,7 @@ add_library(emulator_lib
     src/decoder.cpp
     src/executor.cpp
     src/trace.cpp
+    src/debugger.cpp
 )
 target_include_directories(emulator_lib PUBLIC include)
 

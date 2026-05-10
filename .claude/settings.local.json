@@ -15,7 +15,12 @@
       "PowerShell(& \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\riscv_emulator.exe\")",
       "Bash(cmake -B build -S . -DCMAKE_BUILD_TYPE=Release)",
       "PowerShell($env:PATH -split \";\")",
-      "PowerShell($base = \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\tests\"; foreach \\($t in @\\(\"test_cpu\",\"test_memory\",\"test_decoder\",\"test_executor\",\"test_trace\"\\)\\) { Write-Host \"=== $t ===\"; & \"$base\\\\$t.exe\" 2>&1; Write-Host \"\" })"
+      "PowerShell($base = \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\tests\"; foreach \\($t in @\\(\"test_cpu\",\"test_memory\",\"test_decoder\",\"test_executor\",\"test_trace\"\\)\\) { Write-Host \"=== $t ===\"; & \"$base\\\\$t.exe\" 2>&1; Write-Host \"\" })",
+      "PowerShell(cmd /c \"dir /a C:\\\\Users\\\\mohit\\\\AppData\\\\Local\\\\Programs\\\\Antigravity\")",
+      "PowerShell(cmd /c \"dir /a C:\\\\Users\\\\mohit\\\\AppData\\\\Local\\\\Programs\\\\Antigravity\\\\tools\")",
+      "PowerShell($cmake = \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\18\\\\Community\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\cmake.exe\"; $proj = \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\"; & $cmake --build \"$proj\\\\build\" 2>&1)",
+      "PowerShell($vcvars = \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\18\\\\Community\\\\VC\\\\Auxiliary\\\\Build\\\\vcvarsall.bat\"; $cmake = \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\18\\\\Community\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\cmake.exe\"; $proj = \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\"; cmd /c \"`\"$vcvars`\" x86 && `\"$cmake`\" --build `\"$proj\\\\build`\"\" 2>&1)",
+      "PowerShell($base = \"C:\\\\Users\\\\mohit\\\\OneDrive - UW-Madison\\\\Desktop\\\\riscv-emulator\\\\build\\\\tests\"; foreach \\($t in @\\(\"test_cpu\",\"test_memory\",\"test_decoder\",\"test_executor\",\"test_trace\",\"test_debugger\"\\)\\) { Write-Host \"=== $t ===\"; & \"$base\\\\$t.exe\" 2>&1; Write-Host \"\" })"
     ]
   }
 }
