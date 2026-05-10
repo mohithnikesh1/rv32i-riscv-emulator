@@ -361,3 +361,90 @@ TEST(ExecutorTest, BranchNotTakenUpdatesPC) {
     run(cpu, mem, 0x00208463);  // BEQ x1, x2, 8
     EXPECT_EQ(cpu.pc, 104u);
 }
+
+// ---------------------------------------------------------------------------
+// JAL / JALR tests
+//
+// JAL encoding (J-type):
+//   imm[20] | imm[10:1] | imm[11] | imm[19:12] | rd | opcode(0x6F)
+//
+// JALR encoding (I-type):
+//   imm[11:0] | rs1 | funct3(000) | rd | opcode(0x67)
+//
+//   JAL  x1, +8  : 0x008000EF   (rd=x1, offset=+8)
+//   JAL  x0, +8  : 0x0080006F   (rd=x0, offset=+8)
+//   JALR x1,x2,4 : 0x004100E7   (rd=x1, rs1=x2, imm=4)
+//   JALR x0,x2,4 : 0x00410067   (rd=x0, rs1=x2, imm=4)
+//   JALR x1,x2,0 : 0x000100E7   (rd=x1, rs1=x2, imm=0)
+// ---------------------------------------------------------------------------
+
+// JAL must write the return address (PC + 4) into rd.
+// Start at PC=0, JAL x1, +8 -> x1 should be 4, PC should be 8.
+TEST(ExecutorTest, JalStoresReturnAddress) {
+    CPUState cpu;
+    Memory mem(1024);
+    run(cpu, mem, 0x008000EF);  // JAL x1, +8
+    EXPECT_EQ(cpu.get_reg(1), 4u);   // return addr = 0 + 4
+    EXPECT_EQ(cpu.pc, 8u);
+}
+
+// JAL must add the immediate to the current PC, not always jump to a fixed address.
+// Start at PC=100, JAL x1, +8 -> PC should be 108.
+TEST(ExecutorTest, JalUpdatesPCRelative) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.pc = 100;
+    run(cpu, mem, 0x008000EF);  // JAL x1, +8
+    EXPECT_EQ(cpu.pc, 108u);
+    EXPECT_EQ(cpu.get_reg(1), 104u);  // return addr = 100 + 4
+}
+
+// JAL with rd=x0 must not change x0, but the jump still happens.
+TEST(ExecutorTest, JalToX0DoesNotChangeX0) {
+    CPUState cpu;
+    Memory mem(1024);
+    run(cpu, mem, 0x0080006F);  // JAL x0, +8
+    EXPECT_EQ(cpu.get_reg(0), 0u);
+    EXPECT_EQ(cpu.pc, 8u);
+}
+
+// JALR must write the return address (PC + 4) into rd.
+// Set x2=100, PC=0, JALR x1,x2,4 -> x1 = 4, PC = (100+4)&~1 = 104.
+TEST(ExecutorTest, JalrStoresReturnAddress) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(2, 100);
+    run(cpu, mem, 0x004100E7);  // JALR x1, x2, 4
+    EXPECT_EQ(cpu.get_reg(1), 4u);   // return addr = 0 + 4
+    EXPECT_EQ(cpu.pc, 104u);
+}
+
+// JALR target is rs1 + imm (absolute, not PC-relative).
+// Set x2=200, PC=0, JALR x1,x2,4 -> PC = (200+4)&~1 = 204.
+TEST(ExecutorTest, JalrUpdatesPC) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(2, 200);
+    run(cpu, mem, 0x004100E7);  // JALR x1, x2, 4
+    EXPECT_EQ(cpu.pc, 204u);
+}
+
+// JALR must clear the lowest bit of the computed target address.
+// Set x2=5 (odd), imm=0: target = (5+0)&~1 = 4.
+TEST(ExecutorTest, JalrClearsLowestBit) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(2, 5);
+    run(cpu, mem, 0x000100E7);  // JALR x1, x2, 0
+    EXPECT_EQ(cpu.pc, 4u);
+}
+
+// JALR with rd=x0 must not change x0, but the jump still happens.
+TEST(ExecutorTest, JalrToX0DoesNotChangeX0) {
+    CPUState cpu;
+    Memory mem(1024);
+    cpu.set_reg(2, 100);
+    run(cpu, mem, 0x00410067);  // JALR x0, x2, 4
+    EXPECT_EQ(cpu.get_reg(0), 0u);
+    EXPECT_EQ(cpu.pc, 104u);
+}

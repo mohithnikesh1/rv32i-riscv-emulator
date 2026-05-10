@@ -22,6 +22,8 @@ static constexpr uint32_t OPCODE_OP     = 0x33;  // R-type arithmetic (ADD, SUB,
 static constexpr uint32_t OPCODE_LOAD   = 0x03;  // I-type loads (LB, LH, LW)
 static constexpr uint32_t OPCODE_STORE  = 0x23;  // S-type stores (SB, SH, SW)
 static constexpr uint32_t OPCODE_BRANCH = 0x63;  // B-type branches (BEQ, BNE, BLT, BGE)
+static constexpr uint32_t OPCODE_JAL   = 0x6F;  // J-type jump and link
+static constexpr uint32_t OPCODE_JALR  = 0x67;  // I-type jump and link register
 
 DecodedInstruction decode(uint32_t instruction) {
     DecodedInstruction d;
@@ -84,6 +86,22 @@ DecodedInstruction decode(uint32_t instruction) {
         else if (d.funct3 == 0x4) d.mnemonic = "BLT";
         else if (d.funct3 == 0x5) d.mnemonic = "BGE";
         else                      d.mnemonic = "UNKNOWN";
+
+    // --- JAL: J-type, scrambled 21-bit PC-relative immediate ---
+    } else if (d.opcode == OPCODE_JAL) {
+        // The J-type immediate is scrambled across four non-contiguous fields.
+        // Reconstruct: imm[20|10:1|11|19:12], then sign-extend from bit 20.
+        uint32_t imm20    = getBits(instruction, 31,  1);  // bit 31     -> imm[20]
+        uint32_t imm10_1  = getBits(instruction, 21, 10);  // bits 30:21 -> imm[10:1]
+        uint32_t imm11    = getBits(instruction, 20,  1);  // bit 20     -> imm[11]
+        uint32_t imm19_12 = getBits(instruction, 12,  8);  // bits 19:12 -> imm[19:12]
+        uint32_t raw = (imm20 << 20) | (imm19_12 << 12) | (imm11 << 11) | (imm10_1 << 1);
+        d.imm = signExtend(raw, 21);
+        d.mnemonic = "JAL";
+
+    // --- JALR: I-type layout, immediate already set above ---
+    } else if (d.opcode == OPCODE_JALR && d.funct3 == 0x0) {
+        d.mnemonic = "JALR";
 
     } else {
         d.mnemonic = "UNKNOWN";

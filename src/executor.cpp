@@ -6,6 +6,22 @@ void execute(const DecodedInstruction& instr, CPUState& cpu, Memory& mem) {
     uint32_t rs1 = cpu.get_reg(instr.rs1);
     uint32_t rs2 = cpu.get_reg(instr.rs2);
 
+    // --- JAL: rd = pc + 4;  pc = pc + imm ---
+    if (instr.mnemonic == "JAL") {
+        uint32_t return_addr = cpu.pc + 4;
+        cpu.pc += static_cast<uint32_t>(instr.imm);
+        cpu.set_reg(instr.rd, return_addr);
+        return;
+    }
+
+    // --- JALR: rd = pc + 4;  pc = (rs1 + imm) & ~1 ---
+    if (instr.mnemonic == "JALR") {
+        uint32_t return_addr = cpu.pc + 4;
+        cpu.pc = (rs1 + static_cast<uint32_t>(instr.imm)) & ~1u;
+        cpu.set_reg(instr.rd, return_addr);
+        return;
+    }
+
     // --- Branches: no register written, no memory access ---
     // If condition is true, PC jumps to PC + imm; otherwise PC advances by 4.
     if (instr.mnemonic == "BEQ" || instr.mnemonic == "BNE" ||
