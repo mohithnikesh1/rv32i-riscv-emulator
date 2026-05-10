@@ -1,10 +1,10 @@
-Start testing: May 09 20:17 Eastern Daylight Time
+Start testing: May 09 20:19 Eastern Daylight Time
 ----------------------------------------------------------
-1/3 Testing: test_cpu
-1/3 Test: test_cpu
+1/4 Testing: test_cpu
+1/4 Test: test_cpu
 Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_cpu.exe"
 Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
-"test_cpu" start time: May 09 20:17 Eastern Daylight Time
+"test_cpu" start time: May 09 20:19 Eastern Daylight Time
 Output:
 ----------------------------------------------------------
 Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -29,18 +29,18 @@ Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\
 [==========] 6 tests from 1 test suite ran. (0 ms total)
 [  PASSED  ] 6 tests.
 <end of output>
-Test time =   0.04 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"test_cpu" end time: May 09 20:17 Eastern Daylight Time
+"test_cpu" end time: May 09 20:19 Eastern Daylight Time
 "test_cpu" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/3 Testing: test_memory
-2/3 Test: test_memory
+2/4 Testing: test_memory
+2/4 Test: test_memory
 Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_memory.exe"
 Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
-"test_memory" start time: May 09 20:17 Eastern Daylight Time
+"test_memory" start time: May 09 20:19 Eastern Daylight Time
 Output:
 ----------------------------------------------------------
 Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -71,18 +71,18 @@ Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\
 [==========] 9 tests from 1 test suite ran. (0 ms total)
 [  PASSED  ] 9 tests.
 <end of output>
-Test time =   0.04 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"test_memory" end time: May 09 20:17 Eastern Daylight Time
+"test_memory" end time: May 09 20:19 Eastern Daylight Time
 "test_memory" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/3 Testing: test_decoder
-3/3 Test: test_decoder
+3/4 Testing: test_decoder
+3/4 Test: test_decoder
 Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_decoder.exe"
 Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
-"test_decoder" start time: May 09 20:17 Eastern Daylight Time
+"test_decoder" start time: May 09 20:19 Eastern Daylight Time
 Output:
 ----------------------------------------------------------
 Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -116,8 +116,40 @@ Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"test_decoder" end time: May 09 20:17 Eastern Daylight Time
+"test_decoder" end time: May 09 20:19 Eastern Daylight Time
 "test_decoder" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: May 09 20:17 Eastern Daylight Time
+4/4 Testing: test_executor
+4/4 Test: test_executor
+Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_executor.exe"
+Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
+"test_executor" start time: May 09 20:19 Eastern Daylight Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from ExecutorTest
+[ RUN      ] ExecutorTest.AddiBasic
+[       OK ] ExecutorTest.AddiBasic (0 ms)
+[ RUN      ] ExecutorTest.AddiNegativeImmediate
+[       OK ] ExecutorTest.AddiNegativeImmediate (0 ms)
+[ RUN      ] ExecutorTest.AddiWriteToX0DoesNothing
+[       OK ] ExecutorTest.AddiWriteToX0DoesNothing (0 ms)
+[ RUN      ] ExecutorTest.AddiAdvancesPCByFour
+[       OK ] ExecutorTest.AddiAdvancesPCByFour (0 ms)
+[----------] 4 tests from ExecutorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 4 tests.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_executor" end time: May 09 20:19 Eastern Daylight Time
+"test_executor" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 09 20:19 Eastern Daylight Time

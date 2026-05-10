@@ -79,6 +79,16 @@ build CMakeFiles\emulator_lib.dir\src\decoder.cpp.obj: CXX_COMPILER__emulator_li
   TARGET_PDB = emulator_lib.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\emulator_lib.dir
 
+build CMakeFiles\emulator_lib.dir\src\executor.cpp.obj: CXX_COMPILER__emulator_lib_unscanned_Debug C$:\Users\mohit\OneDrive$ -$ UW-Madison\Desktop\riscv-emulator\src\executor.cpp || cmake_object_order_depends_target_emulator_lib
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd
+  INCLUDES = -I"C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\include"
+  OBJECT_DIR = CMakeFiles\emulator_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\emulator_lib.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\emulator_lib.dir\emulator_lib.pdb
+  TARGET_PDB = emulator_lib.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\emulator_lib.dir
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target emulator_lib
@@ -87,7 +97,7 @@ build CMakeFiles\emulator_lib.dir\src\decoder.cpp.obj: CXX_COMPILER__emulator_li
 #############################################
 # Link the static library emulator_lib.lib
 
-build emulator_lib.lib: CXX_STATIC_LIBRARY_LINKER__emulator_lib_Debug CMakeFiles\emulator_lib.dir\src\cpu.cpp.obj CMakeFiles\emulator_lib.dir\src\memory.cpp.obj CMakeFiles\emulator_lib.dir\src\decoder.cpp.obj
+build emulator_lib.lib: CXX_STATIC_LIBRARY_LINKER__emulator_lib_Debug CMakeFiles\emulator_lib.dir\src\cpu.cpp.obj CMakeFiles\emulator_lib.dir\src\memory.cpp.obj CMakeFiles\emulator_lib.dir\src\decoder.cpp.obj CMakeFiles\emulator_lib.dir\src\executor.cpp.obj
   CONFIG = Debug
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:X86
@@ -729,6 +739,47 @@ build tests\test_decoder.exe: CXX_EXECUTABLE_LINKER__test_decoder_Debug tests\CM
   TARGET_PDB = tests\test_decoder.pdb
   TARGET_SUPPORT_DIR = tests\CMakeFiles\test_decoder.dir
 
+# =============================================================================
+# Object build statements for EXECUTABLE target test_executor
+
+
+#############################################
+# Order-only phony target for test_executor
+
+build cmake_object_order_depends_target_test_executor: phony || cmake_object_order_depends_target_emulator_lib cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
+
+build tests\CMakeFiles\test_executor.dir\test_executor.cpp.obj: CXX_COMPILER__test_executor_unscanned_Debug C$:\Users\mohit\OneDrive$ -$ UW-Madison\Desktop\riscv-emulator\tests\test_executor.cpp || cmake_object_order_depends_target_test_executor
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd
+  INCLUDES = -I"C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\include" -external:I"C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\include" -external:I"C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest" -external:W0
+  OBJECT_DIR = tests\CMakeFiles\test_executor.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\test_executor.dir
+  TARGET_COMPILE_PDB = tests\CMakeFiles\test_executor.dir\
+  TARGET_PDB = tests\test_executor.pdb
+  TARGET_SUPPORT_DIR = tests\CMakeFiles\test_executor.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target test_executor
+
+
+#############################################
+# Link the executable tests\test_executor.exe
+
+build tests\test_executor.exe: CXX_EXECUTABLE_LINKER__test_executor_Debug tests\CMakeFiles\test_executor.dir\test_executor.cpp.obj | emulator_lib.lib lib\gtest_main.lib lib\gtest.lib || emulator_lib.lib lib\gtest.lib lib\gtest_main.lib
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = emulator_lib.lib  lib\gtest_main.lib  lib\gtest.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = tests\CMakeFiles\test_executor.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = tests\CMakeFiles\test_executor.dir\
+  TARGET_FILE = tests\test_executor.exe
+  TARGET_IMPLIB = tests\test_executor.lib
+  TARGET_PDB = tests\test_executor.pdb
+  TARGET_SUPPORT_DIR = tests\CMakeFiles\test_executor.dir
+
 
 #############################################
 # Utility command for test
@@ -825,6 +876,10 @@ build test_decoder: phony tests\test_decoder.exe
 
 build test_decoder.exe: phony tests\test_decoder.exe
 
+build test_executor: phony tests\test_executor.exe
+
+build test_executor.exe: phony tests\test_executor.exe
+
 build test_memory: phony tests\test_memory.exe
 
 build test_memory.exe: phony tests\test_memory.exe
@@ -865,7 +920,7 @@ build _deps\googletest-build\googletest\all: phony lib\gtest.lib lib\gtest_main.
 #############################################
 # Folder: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
 
-build tests\all: phony tests\test_cpu.exe tests\test_memory.exe tests\test_decoder.exe
+build tests\all: phony tests\test_cpu.exe tests\test_memory.exe tests\test_decoder.exe tests\test_executor.exe
 
 # =============================================================================
 # Built-in targets

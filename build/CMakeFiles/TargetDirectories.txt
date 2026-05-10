@@ -31,6 +31,7 @@ C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googlete
 C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CMakeFiles/test_cpu.dir
 C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CMakeFiles/test_memory.dir
 C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CMakeFiles/test_decoder.dir
+C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CMakeFiles/test_executor.dir
 C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CMakeFiles/test.dir
 C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CMakeFiles/edit_cache.dir
 C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CMakeFiles/rebuild_cache.dir
