@@ -1,11 +1,11 @@
 # ninja log v6
+83	3152	8000749406860431	tests/CMakeFiles/test_cpu.dir/test_cpu.cpp.obj	1d0be15d1ea69c66
+51	3106	8000749406548990	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	ad65cc1dbe021fd2
 42	1697	8000749406330818	CMakeFiles/emulator_lib.dir/src/cpu.cpp.obj	77bb79650ddfa39e
 47	1897	8000749406518937	CMakeFiles/emulator_lib.dir/src/memory.cpp.obj	5236ab0077ec2263
+2196	2682	8000749428004697	riscv_emulator.exe	dd9832119ec3e8b2
 1897	1981	8000749425023911	emulator_lib.lib	69655281680f1552
 55	2196	8000749406589881	CMakeFiles/riscv_emulator.dir/src/main.cpp.obj	fdd30f89c83196b1
-2196	2682	8000749428004697	riscv_emulator.exe	dd9832119ec3e8b2
-51	3106	8000749406548990	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	ad65cc1dbe021fd2
-83	3152	8000749406860431	tests/CMakeFiles/test_cpu.dir/test_cpu.cpp.obj	1d0be15d1ea69c66
 88	3187	8000749406919696	tests/CMakeFiles/test_memory.dir/test_memory.cpp.obj	3bf6271087bcd3bc
 78	3408	8000749406826374	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj	c0085f9f85710a66
 74	3850	8000749406774214	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock-all.cc.obj	d2761524256c9afb
@@ -13,9 +13,20 @@
 37	4828	8000749406330818	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	6f54787c6ffceb58
 59	4839	8000749406633736	_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/__/googletest/src/gtest-all.cc.obj	94ba004ccb1f6844
 68	4857	8000749406703722	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/__/googletest/src/gtest-all.cc.obj	a0b1e86427355c80
+4943	5583	8000749455343487	tests/test_memory.exe	7ac2c3bda0da3115
 4828	4893	8000749454318463	lib/gtest.lib	f117b765157691e3
 4839	4903	8000749454432211	lib/gmock.lib	84c27274d37a91e1
 4857	4921	8000749454615930	lib/gmock_main.lib	b30b0ddb622cf017
 4893	4937	8000749454836312	lib/gtest_main.lib	2d35d666473f8e83
-4943	5583	8000749455343487	tests/test_memory.exe	7ac2c3bda0da3115
 4937	5583	8000749455343487	tests/test_cpu.exe	82167839d0c1e2eb
+32	4195	8000751080741521	build.ninja	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/cmake_install.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/cmake_install.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/googlemock/cmake_install.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/googletest/cmake_install.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/cmake_install.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/CTestTestfile.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/CTestTestfile.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/googlemock/CTestTestfile.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/googletest/CTestTestfile.cmake	666266ef14a72f32
+32	4195	8000751080741521	C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/CTestTestfile.cmake	666266ef14a72f32
