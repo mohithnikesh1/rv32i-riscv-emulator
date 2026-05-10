@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/cmake_install.cmake",
+		"C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/cmake_install.cmake",
+		"C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/googlemock/cmake_install.cmake",
+		"C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/_deps/googletest-build/googletest/cmake_install.cmake",
+		"C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

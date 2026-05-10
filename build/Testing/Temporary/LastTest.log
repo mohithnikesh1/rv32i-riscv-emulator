@@ -1,0 +1,81 @@
+Start testing: May 09 20:09 Eastern Daylight Time
+----------------------------------------------------------
+1/2 Testing: test_cpu
+1/2 Test: test_cpu
+Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_cpu.exe"
+Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
+"test_cpu" start time: May 09 20:09 Eastern Daylight Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
+[==========] Running 6 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 6 tests from CPUStateTest
+[ RUN      ] CPUStateTest.AllRegistersStartAtZero
+[       OK ] CPUStateTest.AllRegistersStartAtZero (0 ms)
+[ RUN      ] CPUStateTest.PCStartsAtZero
+[       OK ] CPUStateTest.PCStartsAtZero (0 ms)
+[ RUN      ] CPUStateTest.X0AlwaysRemainsZero
+[       OK ] CPUStateTest.X0AlwaysRemainsZero (0 ms)
+[ RUN      ] CPUStateTest.SetAndGetRegister
+[       OK ] CPUStateTest.SetAndGetRegister (0 ms)
+[ RUN      ] CPUStateTest.SetMultipleRegisters
+[       OK ] CPUStateTest.SetMultipleRegisters (0 ms)
+[ RUN      ] CPUStateTest.ResetClearsAllState
+[       OK ] CPUStateTest.ResetClearsAllState (0 ms)
+[----------] 6 tests from CPUStateTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 6 tests.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_cpu" end time: May 09 20:09 Eastern Daylight Time
+"test_cpu" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: test_memory
+2/2 Test: test_memory
+Command: "C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests/test_memory.exe"
+Directory: C:/Users/mohit/OneDrive - UW-Madison/Desktop/riscv-emulator/build/tests
+"test_memory" start time: May 09 20:09 Eastern Daylight Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\mohit\OneDrive - UW-Madison\Desktop\riscv-emulator\build\_deps\googletest-src\googletest\src\gtest_main.cc
+[==========] Running 9 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 9 tests from MemoryTest
+[ RUN      ] MemoryTest.ConstructionSucceeds
+[       OK ] MemoryTest.ConstructionSucceeds (0 ms)
+[ RUN      ] MemoryTest.InitialBytesAreZero
+[       OK ] MemoryTest.InitialBytesAreZero (0 ms)
+[ RUN      ] MemoryTest.ReadWriteByte
+[       OK ] MemoryTest.ReadWriteByte (0 ms)
+[ RUN      ] MemoryTest.ReadWriteHalfword
+[       OK ] MemoryTest.ReadWriteHalfword (0 ms)
+[ RUN      ] MemoryTest.ReadWriteWord
+[       OK ] MemoryTest.ReadWriteWord (0 ms)
+[ RUN      ] MemoryTest.LittleEndianLayout
+[       OK ] MemoryTest.LittleEndianLayout (0 ms)
+[ RUN      ] MemoryTest.OutOfBoundsReadThrows
+[       OK ] MemoryTest.OutOfBoundsReadThrows (0 ms)
+[ RUN      ] MemoryTest.OutOfBoundsWriteThrows
+[       OK ] MemoryTest.OutOfBoundsWriteThrows (0 ms)
+[ RUN      ] MemoryTest.ReadWordAtEndThrows
+[       OK ] MemoryTest.ReadWordAtEndThrows (0 ms)
+[----------] 9 tests from MemoryTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 9 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 9 tests.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_memory" end time: May 09 20:09 Eastern Daylight Time
+"test_memory" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 09 20:09 Eastern Daylight Time
